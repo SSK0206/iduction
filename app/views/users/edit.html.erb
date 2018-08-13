@@ -1,0 +1,21 @@
+<div class="container_form">
+  <h2>アカウント編集</h2>
+
+  <%= form_for @user do |f| %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, :class => "form-control my-form" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :self_introduction %><br />
+      <%= f.text_area :self_introduction, autocomplete: "self_introduction", :class => "form-control my-form" %>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit "登録", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
