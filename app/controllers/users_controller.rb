@@ -7,12 +7,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
-		if (@user.avatar.blank?)
-		  # imageが空だったら何もしない
-		else
-		  @user.avatar.cache!
-		end
-
+		@user.avatar.cache! unless @user.avatar.blank? #avatarが空だったら何もしない
 		if @user.id == current_user.id
 		else
 			redirect_to "/"
@@ -23,7 +18,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.id == current_user.id
-			@user.update(params.require(:user).permit(:name, :self_introduction, :avatar, :avatar_cache))
+			@user.update(user_params)
 			redirect_to :action => "edit", :id => @user.id
 			flash[:notice] = "編集が完了しました"
     	else
@@ -31,4 +26,11 @@ class UsersController < ApplicationController
       		flash[:alert] = "無効なユーザー"
 		end
 	end
+
+
+	private
+
+		def user_params
+			params.require(:user).permit(:name, :self_introduction, :avatar, :avatar_cache)
+		end
 end
