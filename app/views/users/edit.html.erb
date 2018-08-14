@@ -3,9 +3,19 @@
 
   <%= form_for @user do |f| %>
 
+    
+    <div class="field">
+      <%= f.label :avatar %><br>
+      <%= image_tag @user.avatar.url if @user.avatar? %><br>
+      
+      <%= f.file_field :avatar %>
+      
+      <%= f.hidden_field :avatar_cache %>
+    </div>
+
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, :class => "form-control my-form" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", :class => "form-control my-form" %>
     </div>
 
     <div class="field">

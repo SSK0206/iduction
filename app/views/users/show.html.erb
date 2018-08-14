@@ -1,5 +1,8 @@
 <h1>ユーザー情報</h1>
 <hr>
-<p>ユーザー名:<%= @user.name %></p>
-<p>紹介文:<%= @user.self_introduction %>
+<% if @user.avatar? %>
+	<%= image_tag @user.avatar.thumb.url %>
+<% end %>
+<p><b><%= @user.name %></b></p>
+<p><%= @user.self_introduction %>
 <p><%= link_to "編集",{ :action => "edit",id: @user.id} , class:"btn btn-primary"%></p>
