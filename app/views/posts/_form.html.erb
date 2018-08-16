@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "タイトル" %>
     <%= form.text_field :title, id: :post_title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, "説明" %>
     <%= form.text_area :description, id: :post_description %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, "内容" %>
     <%= form.cktext_area :content, id: :post_content %>
   </div>
 
