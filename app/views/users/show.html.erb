@@ -1,43 +1,44 @@
 <h1>マイページ</h1>
 <hr>
 
-<div style="float: left;">
-	
+<div style="float: left; padding: 10px;">
 	<% if @user.avatar? %>
 		<%= image_tag @user.avatar.url %>
 	<% end %>
 	<br><br>
 	<p style="font-size: 30px;"><b><%= @user.name %></b></p>
-	<p><%= @user.self_introduction %>
+		<%= @user.self_introduction %>
 	<p><%= link_to "編集",{ :action => "edit",id: @user.id} , class:"btn btn-primary"%></p>
 </div>
 
-<div style="padding: 10px;width: 250px; margin: 30px 20px 150px 150px; border: 1px solid;">
+
+
+
+<% @posts.each do |post| %>
+<div style="padding: 10px;width: 250px; margin: 30px 20px 0 150px; border: 1px solid;">
 	<table>
+    <tr>
+      <% if @user.avatar? %>
+          <td><%= image_tag @user.avatar.thumb.url %></td>
+      <% end %>
+      <td style="font-size: 20px; font-weight: bold;"><%= post.title %></td>
+    </tr>
+		
+		
 
-	<% @posts.each do |post| %>
-  
-	    <tr>
-	      <% if @user.avatar? %>
-            <td><%= image_tag @user.avatar.thumb.url %></td>
-        <% end %>
-	      <td style="font-size: 20px; font-weight: bold;"><%= post.title %></td>
-	    </tr>
-  		
-  		
+    <tr>
+      <td></td><td><%= post.description %></td>
+    </tr>
 
-	    <tr>
-	      <td></td><td><%= post.description %></td>
-	    </tr>
+		<tr>
+			<td><%= link_to '詳細', post %></td>
+      <td><%= link_to '編集', edit_post_path(post) %></td>
+      <td><%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+    </tr>
 
-  		<tr>
-  			<td><%= link_to '詳細', post %></td>
-        <td><%= link_to '編集', edit_post_path(post) %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  
-</table>
-<br>
+   </table>
+	<br>
 </div>
+
+<% end %>
 

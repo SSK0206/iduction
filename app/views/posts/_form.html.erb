@@ -1,3 +1,4 @@
+<div class="container_form">
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -13,20 +14,22 @@
 
   <div class="field">
     <%= form.label :title, "タイトル" %>
-    <%= form.text_field :title, id: :post_title %>
+    <%= form.text_field :title, id: :post_title, :class => "form-control my-form", autofocus: true; %>
   </div>
 
   <div class="field">
     <%= form.label :description, "説明" %>
-    <%= form.text_area :description, id: :post_description %>
+    <%= form.text_area :description, id: :post_description, :class => "form-control my-form" %>
   </div>
 
   <div class="field">
     <%= form.label :content, "内容" %>
-    <%= form.cktext_area :content, id: :post_content %>
+    <%= form.cktext_area :content, id: :post_content, :class => "form-control my-form" %>
+    <%= form.hidden_field :user_avatar, value: current_user.avatar.thumb %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn btn-primary" %>
   </div>
 <% end %>
+</div>
