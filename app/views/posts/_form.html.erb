@@ -25,7 +25,7 @@
   <div class="field">
     <%= form.label :content, "内容" %>
     <%= form.cktext_area :content, id: :post_content, :class => "form-control my-form" %>
-    <%= form.hidden_field :user_avatar, value: current_user.avatar.thumb %>
+    <%= form.hidden_field :user_avatar, value: current_user.avatar %>
   </div>
 
   <div class="actions">

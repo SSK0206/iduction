@@ -17,7 +17,7 @@
     <% @posts.each do |post| %>
       <tr>
         <% if @user.avatar? %>
-            <td><%= image_tag @user.avatar.thumb.url %></td>
+            <td><%= image_tag @user.avatar.url %></td>
         <% end %>
         <td><%= post.title %></td>
         <td><%= post.description %></td>

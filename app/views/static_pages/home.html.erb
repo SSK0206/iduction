@@ -2,13 +2,13 @@
     <% @posts.each do |post| %>
     <table style="width: 100%;">
       <tr>
-        <% if post.user_avatar %>
-            <td style="padding: 0;"><%= image_tag post.user_avatar %></td>
-        <% else%>
-            <td><%=post.user_avatar%></td>
+        <% user = User.find(post.user_id) %>
+        <% if user.avatar.blank? %>
+          <td style="padding: 0;"><%= image_tag 'default.jpg' %></td>
+        <% else %>
+          <td style="padding: 0;"><%= image_tag user.avatar %></td>
         <% end %>
         <td width="250" style="font-size: 14px; text-align: left;"><%= link_to "#{post.title}", post %></td>
-        
       </tr>
       <tr>
         <td></td>

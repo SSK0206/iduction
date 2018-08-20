@@ -3,7 +3,7 @@
 
 <div style="float: left; padding: 10px;">
 	<% if @user.avatar? %>
-		<%= image_tag @user.avatar.url %>
+		<%= image_tag @user.avatar.url, width: '70px' %>
 	<% end %>
 	<br><br>
 	<p style="font-size: 30px;"><b><%= @user.name %></b></p>
@@ -19,7 +19,7 @@
 	<table>
     <tr>
       <% if @user.avatar? %>
-          <td><%= image_tag @user.avatar.thumb.url %></td>
+          <td><%= image_tag @user.avatar.url %></td>
       <% end %>
       <td style="font-size: 20px; font-weight: bold;"><%= post.title %></td>
     </tr>
