@@ -2,17 +2,16 @@
     <% @posts.each do |post| %>
     <table style="width: 100%;">
       <tr>
-        <% user = User.find(post.user_id) %>
-        <% if user.avatar.blank? %>
-          <td style="padding: 0;"><%= image_tag 'default.jpg' %></td>
+        <% if post.user.avatar.blank? %>
+          <td style="padding: 0; width: 50px;"><%= image_tag 'default.jpg' %></td>
         <% else %>
-          <td style="padding: 0;"><%= image_tag user.avatar %></td>
+          <td style="padding: 0; width: 50px;"><%= image_tag post.user.avatar %></td>
         <% end %>
-        <td width="250" style="font-size: 14px; text-align: left;"><%= link_to "#{post.title}", post %></td>
+        <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{post.title}", post %></td>
       </tr>
       <tr>
         <td></td>
-        <td style="text-align: left; font-size: 10px;"><%= post.description %></td>
+        <td style="text-align: left; font-size: 10px; width: 300px;"><%= post.description %></td>
       </tr>
       
     </table>
