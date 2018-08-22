@@ -8,6 +8,9 @@
           <td style="padding: 0; width: 50px;"><%= image_tag post.user.avatar %></td>
         <% end %>
         <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{post.title}", post %></td>
+        <td id="post-<%= post.id %>">
+          <%= render "likes/like", post: post %>
+        </td>
       </tr>
       <tr>
         <td></td>

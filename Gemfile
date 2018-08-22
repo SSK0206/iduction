@@ -16,8 +16,13 @@ gem 'devise-i18n-views'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'jquery-rails'
+gem 'rails-ujs'
+
 
 gem 'ckeditor'
+
+gem 'counter_culture'
 
 gem 'bootstrap-sass', '3.3.7'
 
