@@ -1,4 +1,4 @@
-<div class="col-md-5 col-md-offset-2 text-center">
+<div class="col-md-5 col-md-offset-2 text-center" style="max-width: 500px;">
     <% @posts.each do |post| %>
     <table style="width: 100%;">
       <tr>
@@ -8,7 +8,7 @@
           <td style="padding: 0; width: 50px;"><%= image_tag post.user.avatar %></td>
         <% end %>
         <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{post.title}", post %></td>
-        <td id="post-<%= post.id %>">
+        <td style="width: 70px;" id="post-<%= post.id %>">
           <%= render "likes/like", post: post %>
         </td>
       </tr>
