@@ -1,0 +1,45 @@
+<div id="comment_<%= comment.id %>" class="comment" style="padding-bottom: 5px;">
+	<div class="comment-content content"  style="padding: 20px;">
+		<div class="comment-user-info">
+			
+			<%= link_to (user_path(comment.user)) do %>
+			<% if comment.user.avatar.present? %>
+				<%= image_tag comment.user.avatar_url, width: '40px' %>
+			<% else %>
+				<%= image_tag 'default.jpg', width: '40px' %>
+			<% end %>
+			<% end %>
+			
+			<%= link_to (user_path(comment.user.id)) do %>
+				<%= comment.user.name %>
+			<% end %>
+		</div>
+
+		<% if comment.parent_id.present? %>
+			<div class="reply-user">
+			<%=link_to "@#{comment.parent.user.name}さん", user_path(comment.parent.user) %>
+			</div>
+		<% end %>
+
+		<div style="margin-top:5px; border:1px solid; border-color: #ccc;"><%= simple_format(comment.content) %></div>
+		<div class ="comment-info">
+		<p class="comment-date">
+		<%= "#{distance_of_time_in_words_to_now(comment.updated_at)}" %>前
+		<%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+		<% if user_signed_in? %>
+			<% if current_user.id == comment.user_id %>
+				<%= link_to "編集", edit_post_comment_path(post,comment), class: 'edit-comment-link',remote:true %>
+				<%= link_to "削除", [post, comment], method: :delete, class: 'delete-comment-link', data:{confirm:"Are your sure?"}, remote: true %>
+			<% else %>
+				<%= link_to "返信", reply_post_comment_path(post ,comment), class: 'reply-comment-link', remote: true %>
+			<% end %>
+		<% end %>
+		</p>
+		</div>
+	</div>
+</div>
+<div class="comment-reply">
+	<% if (comment.replies_count.to_i > 0) %>
+		<%= render partial:'comments/comment',locals:{post:post},collection:comment.replies.includes(:user,:post,:parent) %>
+	<% end %>
+</div>

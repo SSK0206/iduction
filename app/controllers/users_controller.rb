@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, :only => [:show, :edit, :update]
+	before_action :authenticate_user!, :only => [:edit, :update]
 
 	def show
-		@user = current_user
+		@user = User.find(params[:id])
     	@posts = @user.posts.all
 	end
 

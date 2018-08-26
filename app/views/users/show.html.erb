@@ -1,38 +1,44 @@
-<h1>マイページ</h1>
-<hr>
 
-<div style="float: left; margin: 40px;">
-	<% if @user.avatar? %>
-		<%= image_tag @user.avatar.url, width: '70px' %>
-	<% end %>
-	<br><br>
-	<p style="font-size: 30px;"><b><%= @user.name %></b></p>
-		<%= @user.self_introduction %>
-	<p><%= link_to "編集",{ :action => "edit",id: @user.id} , class:"btn btn-primary"%></p>
-</div>
+<div class="content">
+  <h1>プロフィール</h1>
+  <hr>
+
+  <div style="float: left; padding: 30px;" class="content">
+  	<% if @user.avatar? %>
+  		<%= image_tag @user.avatar.url, width: '70px' %>
+  	<% end %>
+  	<br><br>
+  	<p style="font-size: 30px;"><b><%= @user.name %></b></p>
+  		<%= @user.self_introduction %>
+
+      <% if @user == current_user %>
+  	    <p><%= link_to "編集",{ :action => "edit",id: @user.id} , class:"btn btn-primary"%></p>
+      <% end %>
+  </div>
 
 
-<div class="col-md-5 col-md-offset-1 text-center">
-    <% @posts.each do |post| %>
-    <table style="width: 100%;">
-      <tr>
-        <% user = User.find(post.user_id) %>
-        <% if user.avatar.blank? %>
-          <td style="padding: 5px; width: 50px;"><%= image_tag 'default.jpg' %></td>
-        <% else %>
-          <td style="padding: 5px; width: 50px;"><%= image_tag user.avatar %></td>
-        <% end %>
-        <td width="250" style="font-size: 14px; text-align: left;"><%= link_to "#{post.title}", post %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td style="text-align: left; font-size: 10px; width: 200px;"><%= post.description %></td>
-        <td style="width: 45px;"><%= link_to '編集', edit_post_path(post) %></td>
-      	<td style="width: 45px;"><%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
-      </tr>
-      
-    </table>
-    <hr style="margin: 10px;">
-    <% end %>
+  <div class="content" style="padding:0 30px 0;">
+      <% @posts.each do |post| %>
+      <table style="width: 100%;" class="content">
+        <tr>
+          <% user = User.find(params[:id]) %>
+          <% if user.avatar.blank? %>
+            <td style="padding: 5px; width: 50px;"><%= image_tag 'default.jpg' %></td>
+          <% else %>
+            <td style="padding: 5px; width: 50px;"><%= image_tag user.avatar %></td>
+          <% end %>
+          <td width="250" style="font-size: 14px; text-align: left;"><%= link_to "#{post.title}", post %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="text-align: left; font-size: 10px; width: 200px;"><%= post.description %></td>
+          <td style="width: 45px;"><%= link_to '編集', edit_post_path(post) %></td>
+        	<td style="width: 45px;"><%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+        </tr>
+        
+      </table>
+      <hr style="margin: 10px;">
+      <% end %>
 
+  </div>
 </div>

@@ -17,6 +17,7 @@ gem 'devise-i18n-views'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rails-ujs'
 
 

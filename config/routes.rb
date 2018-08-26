@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  resources :posts
+  resources :posts, exept: [:index] do
+  	resources :comments, except: [:index, :show] do
+  		member do
+  			get :reply
+  		end
+  	end
+  end
   resources :likes, only: [:create, :destroy]
   
   devise_for :users

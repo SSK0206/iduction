@@ -1,0 +1,14 @@
+<div class="comments-widget">
+ 	<div class="comments-left">
+ 		<h3 class="comments-header" style="font-size: 20px;">
+	 		コメント
+	 		<span id="comments-count-of-post">
+	 			<%= post.comments_count %>件
+	 		</span>
+ 		</h3>
+		<div id="comment-wrap">
+ 			<%= render partial:'comments/comment',locals:{post: post},collection:post.comments.where(parent_id:nil).includes(:user) %>
+ 		</div>
+ 		<%= render 'comments/form',{comment:comment,post:post} %>
+	</div>
+</div>

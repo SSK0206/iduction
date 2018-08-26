@@ -5,14 +5,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @user = current_user
-    @posts = @user.posts.all
+    redirect_to root_url
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @user = current_user
+    @post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 
   # GET /posts/new

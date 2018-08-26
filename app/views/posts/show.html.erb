@@ -1,25 +1,32 @@
-<div style="margin-top:50px; max-width: 700px;">
-	<div style="font-weight: bold;font-size: 30px; margin-bottom: 20px; padding-left: 10px;">
-	  <%= @post.title %>
+<div class="content" style="margin-top: 50px;padding:30px; max-width: 700px;">
+	
+	<div style="margin: 20px 10px 10px 10px;">
+		<div>
+		  	<div style="font-weight: bold; font-size: 20px;">
+			  	<%= image_tag @post.user.avatar, width: '40px' %>
+			  	<span style="margin-right: 10px;"></span>
+			  	<span>
+			  		<%= @post.user.name %>
+			  	</span>
+		 	</div>
+		  
+		  	<hr>
+		 </div>
+		
+		<div style="font-weight: bold;font-size: 35px;">
+		  	<%= @post.title %>
+		</div>
+		<div style="padding: 10px;">
+			<%= @post.description %>
+		</div>
+		
+		<hr>
+		<div>
+			<%== @post.content %>
+			<%= link_to '編集', edit_post_path(@post) %>
+		</div>
 	</div>
-	<hr>
-	<div style="margin: 20px 40px 20px 40px;">
-	  <div>
-	  	<%= @post.description %>
-	  	<div style="margin: 10px;">
-		  	<%= image_tag @post.user.avatar, width: '40px' %>
-		  	<span style="margin-right: 10px;"></span>
-		  	<span style="font-weight: bold;">
-		  		<%= @post.user.name %>
-		  	</span>
-	 		</div>
-	  </div>
-	  <hr>
-	</div>
-	<div style="margin: 60px 20px 20px 40px;">
-		<%== @post.content %>
-	</div>
-
-	<%= link_to '編集', edit_post_path(@post) %>
+	
 </div>
 
+<%= render partial:'comments/widget', locals:{post: @post,comment:@comment} %>
