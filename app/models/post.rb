@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 		likes.create(user_id: user.id)
 	end
 
+	#ポストにいいねを消す
 	def destroy_like(user)
 		likes.find_by(user_id: user.id).destroy
 	end
