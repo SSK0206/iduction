@@ -27,16 +27,31 @@ body {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #0dc;
+  color: #0cc;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 14px;
   font-weight: bold;
   &:hover {
 	  color: #fff;
 	  text-decoration: none;
   }
 }
+
+.navbar {
+  background-color: #444;
+}
+
+.navbar-toggle {
+  background-color: #999;
+  &:hover {
+    border-color: #fff;
+  }
+  &:focus {
+    border-color: #fff;
+  }
+}
+
 
 
 
