@@ -3,7 +3,7 @@
     <% if post.like?(current_user) %>
       <%= form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
         <%= button_tag(class: "btn btn-default btn-xs") do %>
-          <%= content_tag :span, "#{post.likes_count}", class: "glyphicon glyphicon-heart" %>
+          <%= content_tag :span, "#{post.likes_count}", class: "glyphicon glyphicon-heart color-pink" %>
         <% end %>
       <% end %>
     <% else %>

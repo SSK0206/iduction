@@ -47,9 +47,10 @@ body {
   &:hover {
     border-color: #fff;
   }
-  &:focus {
-    border-color: #fff;
-  }
+}
+
+.color-pink {
+  color: #FF4F6F;
 }
 
 
@@ -61,7 +62,7 @@ body {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #bbb;
   color: #777;
   a {
   	color: #555;
