@@ -25,7 +25,7 @@
 		<div class ="comment-info">
 		<p class="comment-date">
 		<%= "#{distance_of_time_in_words_to_now(comment.updated_at)}" %>前
-		<%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+		<%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
 		<% if user_signed_in? %>
 			<% if current_user.id == comment.user_id %>
 				<%= link_to "編集", edit_post_comment_path(post,comment), class: 'edit-comment-link',remote:true %>

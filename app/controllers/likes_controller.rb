@@ -11,7 +11,6 @@ class LikesController < ApplicationController
 				format.js
 			end
 		end
-		
 	end
 
 	def destroy

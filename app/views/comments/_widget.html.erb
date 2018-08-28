@@ -7,7 +7,7 @@
 	 		</span>
  		</h3>
 		<div id="comment-wrap">
- 			<%= render partial:'comments/comment',locals:{post: post},collection:post.comments.where(parent_id:nil).includes(:user) %>
+ 			<%= render partial:'comments/comment',locals:{post:post},collection:post.comments.where(parent_id:nil).includes(:user) %>
  		</div>
  		<%= render 'comments/form',{comment:comment,post:post} %>
 	</div>

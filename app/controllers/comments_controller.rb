@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 	before_action :set_comment, only: [:update]
 
 	def reply
-		@post = Post.find_by(params[:id])
+		@post = Post.find_by(id: params[:post_id])
 		@comment = @post.comments.find(params[:id])
 		@reply = @post.comments.build(parent: @comment)
 	end
@@ -12,20 +12,21 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@post = Post.find_by(params[:id])
+		@post = Post.find_by(id: params[:post_id])
 		@comment = @post.comments.build(comment_params)
-		@comment.user = current_user
-		
+		@comment.user_id = current_user.id
+		@comment.post_id = @post.id
+	
 		if @comment.save
 			change_parentcomment if params[:comment][:parent_id].present?
 			respond_to do |format|
-				format.html { redirect_to @post, notice: "Comment was successfully created."}
+				format.html { redirect_to @post, notice: "コメントが投稿されました"}
 				format.json { render json: @comment }
 				format.js
 			end
 		else
 			respond_to do |format|
-				format.html { render :back, notice: "Comment was not created." }
+				format.html { render :back, notice: "コメントの投稿に失敗しました" }
 				format.json { render json: @comment.errors }
 				format.js
 			end
@@ -33,18 +34,25 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find_by(params[:id])
-		@comment = @post.comments.find_by(params[:id])
+		@post = Post.find_by(id: params[:post_id])
+		@comment = @post.comments.find(params[:id])
 	end
 
 	def update
-		respond_to do |format|
-			if @comment.update(comment_params)
-				format.html { redirect_to @post, notice: "Comment was successfully updated."}
+		@post = Post.find_by(id: params[:post_id])
+		@comment = @post.comments.find(params[:id])
+		@comment.user_id = current_user.id
+		@comment.post_id = @post.id
+		
+		if @comment.update(comment_params)
+			respond_to do |format|
+				format.html { redirect_to @post, notice: "コメントは編集されました"}
 				format.json { render json: @comment }
 				format.js
-			else
-				format.html { render :back, notice: "Comment was not updated." }
+			end
+		else
+			respond_to do |format|
+				format.html { render :back, notice: "コメントの編集に失敗しました" }
 				format.json { render json: @comment.errors }
 				format.js
 			end
@@ -52,12 +60,12 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@post = Post.find_by(params[:id])
+		@post = Post.find_by(id: params[:post_id])
 		@comment = @post.comments.find(params[:id])
 		@comment.destroy if @comment.errors.empty?
 		delete_commenthave @comment if @comment.parent_id.present?
 		respond_to do |format|
-			format.html { redirect_to @group, notice: "Comment was successfully destroied."}
+			format.html { redirect_to @group, notice: "コメントは削除されました"}
 			format.json { head :no_content }
 			format.js
 		end
@@ -67,7 +75,7 @@ class CommentsController < ApplicationController
 
 		def set_comment
 			begin
-				@post = Post.find_by(params[:id])
+				@post = Post.find_by(id: params[:post_id])
 				@comment = @post.comments.build
 				@comment.errors.add(:base, :recordnotfound, message: "That record doesn't exist. Maybe, it is already destroyed.")
 			rescue => e
@@ -88,7 +96,7 @@ class CommentsController < ApplicationController
 		end
 
 		def comment_params
-			params.require(:comment).permit(:content, :parent_id, :image)
+			params.require(:comment).permit(:content, :parent_id, :post_id, :user_id)
 		end
 end
 
