@@ -3,9 +3,8 @@
 
 
 body {
-	padding-top: 60px;
-	margin: 0 10px 0;
-  background-color: #eee;
+	padding-top: 70px;
+  background-color: #FFEFCF;
 }
 
 .content {
@@ -20,48 +19,59 @@ body {
 	margin-bottom: 10px;
 }
 
-
 /* header */
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #0cc;
+  color: #F1E266;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 14px;
   font-weight: bold;
   &:hover {
-	  color: #fff;
+	  color: #ffff90;
 	  text-decoration: none;
   }
 }
 
-.navbar {
-  background-color: #444;
+#menu.padding-right30 {
+  padding-right: 30px;
 }
 
-.navbar-toggle {
-  background-color: #999;
-  &:hover {
-    border-color: #fff;
-  }
+.navbar {
+  background-color: #F47A44;
 }
 
 .color-pink {
   color: #FF4F6F;
 }
+.color-white {
+  li {
+    a {
+      color: #fff !important;
+      &:hover {
+        background-color: #ff9f69 !important;
+      };
+    }
+  }
+}
 
+.icon-bar {
+ background-color:#000 !important; 
+}
 
-
+.icon-bar-bg {
+  background-color:#FFEFCF  !important;
+}
 
 
 /* footer */
 
 footer {
   margin-top: 45px;
-  padding-top: 5px;
+  padding: 5px 20px 0;
   border-top: 1px solid #bbb;
   color: #777;
   a {
@@ -85,6 +95,9 @@ footer {
   }
 }
 
+.nav .navbar-nav > li > a {
+color: #ffffff;
+}
 /* form */
 
 .my-form {
