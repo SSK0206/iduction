@@ -1,24 +1,54 @@
-<div class="col-md-5 col-md-offset-2 text-center content" style=" padding-top: 5px;">
-    <% @posts.each do |post| %>
-    <table style="width: 100%;">
-      <tr>
-        <% if post.user.avatar.blank? %>
-          <td style="padding: 0; width: 50px;"><%= image_tag 'default.jpg' %></td>
-        <% else %>
-          <td style="padding: 0; width: 50px;"><%= image_tag post.user.avatar %></td>
-        <% end %>
-        <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{post.title}", post %></td>
-        <td style="width: 70px;" id="post-<%= post.id %>">
-          <%= render "likes/like", post: post %>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td style="text-align: left; font-size: 10px; width: 300px;"><%= post.description %></td>
-      </tr>
-      
-    </table>
-    <hr style="margin: 10px;">
-    <% end %>
+<div class="col-md-6 col-md-offset-1 text-center content" style=" padding-top: 15px; margin-top: 10px;">
 
+  <% @posts.each do |post| %>
+  <table style="width: 100%;">
+    <tr>
+      <% if post.user.avatar.blank? %>
+        <td style="padding: 0;"><%= image_tag 'default.jpg' %></td>
+      <% else %>
+        <td style="padding: 0;"><%= image_tag post.user.avatar %></td>
+      <% end %>
+      <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{post.title}", post %></td>
+      <td style="width: 70px;" id="post-<%= post.id %>">
+        <%= render "likes/like", post: post %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align: left; font-size: 10px; width: 300px;"><%= post.description %></td>
+    </tr>
+    
+  </table>
+  <hr style="margin: 10px;">
+  <% end %>
+
+</div>
+
+<div class="col-md-4 text-center content" style=" padding-top: 10px; margin:10px 10px 0;">
+  <h4 style="margin: 5px 0 15px;">いいねランキング</h3>
+  <% count = 1 %>
+  <% @rank.each do |rank| %>
+    <table style="width: 100%;">
+    <tr>
+      <td><%= count %></td>
+      <% if rank.user.avatar.blank? %>
+        <td style="padding: 0;"><%= image_tag 'default.jpg', :width => "30px" %></td>
+      <% else %>
+        <td style="padding: 0;"><%= image_tag rank.user.avatar, :width => "30px" %></td>
+      <% end %>
+      <td style="font-size: 14px; text-align: left; width: 300px;"><%= link_to "#{rank.title}", rank %></td>
+      <td style="width: 70px;" id="rank-<%= rank.id %>">
+        <%= content_tag :span, "#{rank.likes_count}", class: "glyphicon glyphicon-heart color-pink" %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td style="text-align: left; font-size: 10px; width: 300px;"><%= rank.description %></td>
+    </tr>
+    
+  </table>
+  <hr style="margin: 10px;">
+  <% count += 1 %>
+  <% end %>
 </div>
