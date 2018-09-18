@@ -1,4 +1,4 @@
-<div class="content" style="margin-top: 50px;padding:30px;">
+<div class="content" style="margin-top: 50px;padding: 10px;">
 	
 	<div style="margin: 20px 10px 10px 10px;">
 		<div>
@@ -23,7 +23,9 @@
 		<hr>
 		<div>
 			<%== @post.content %>
-			<%= link_to '編集', edit_post_path(@post) %>
+			<% if current_user == @post.user %>
+				<%= link_to '編集', edit_post_path(@post) %>
+			<% end %>
 		</div>
 	</div>
 	

@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
+  protect_from_forgery with: :exception
+
+  autocomplete :post, :title, full:true
+
 end

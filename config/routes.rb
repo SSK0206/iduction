@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts, exept: [:index] do
+    get :autocomplete_post_title, on: :collection
   	resources :comments, except: [:index, :show] do
   		member do
   			get :reply
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   	end
   end
   resources :likes, only: [:create, :destroy]
-  
+
   devise_for :users
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'

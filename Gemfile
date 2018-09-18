@@ -19,7 +19,7 @@ gem 'mini_magick'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-ujs'
-
+gem 'rails4-autocomplete'
 
 gem 'ckeditor'
 
