@@ -21,9 +21,9 @@
 			</div>
 		<% end %>
 
-		<div style="margin-top:5px; border:1px solid; border-color: #ccc;"><%= simple_format(comment.content) %></div>
+		<div style="margin-top:5px;"><%= simple_format(comment.content) %></div>
 		<div class ="comment-info">
-		<p class="comment-date">
+		<p class="comment-date"><font color="#aaa">
 		<%= "#{distance_of_time_in_words_to_now(comment.updated_at)}" %>前
 		<%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
 		<% if user_signed_in? %>
@@ -34,6 +34,7 @@
 				<%= link_to "返信", reply_post_comment_path(post ,comment), class: 'reply-comment-link', remote: true %>
 			<% end %>
 		<% end %>
+		<font>
 		</p>
 		</div>
 	</div>

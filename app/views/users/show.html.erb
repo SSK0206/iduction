@@ -19,19 +19,19 @@
 
   <div class="content" style="padding:0 30px 0;">
       <% @posts.each do |post| %>
-      <table style="width: 100%;" class="content">
-        <tr>
+      <table style="width: 100%;">
+        <tr style="width: 50px;">
           <% user = User.find(params[:id]) %>
           <% if user.avatar.blank? %>
             <td style="padding: 5px; width: 50px;"><%= image_tag 'default.jpg' %></td>
           <% else %>
             <td style="padding: 5px; width: 50px;"><%= image_tag user.avatar %></td>
           <% end %>
-          <td colspan="3" style="font-size: 14px; text-align: left;"><%= link_to "#{post.title}", post %></td>
+          <td colspan="3" style="font-size: 14px; width: 500px;"><%= link_to "#{post.title}", post %></td>
         </tr>
         <tr>
           <td></td>
-          <td style="text-align: left; font-size: 10px; width: 200px;"><%= post.description %></td>
+          <td style="font-size: 10px; width: 200px;"><%= post.description %></td>
           <% if @user == current_user %>
             <td style="width: 45px;"><small><%= link_to '編集', edit_post_path(post) %></small></td>
           	<td style="width: 45px;"><small><%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか?' } %></small></td>
