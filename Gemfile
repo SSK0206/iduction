@@ -27,8 +27,6 @@ gem 'counter_culture'
 
 gem 'bootstrap-sass', '3.3.7'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -58,6 +56,10 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+# Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+# Use Puma as the app server
 end
 
 group :development do
